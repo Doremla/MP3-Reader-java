@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.example.myapp-debug-29:/layout_activity_player.xml.flat",
+        "source": "com.example.myapp-main-31:/layout/activity_player.xml"
+    },
+    {
+        "merged": "com.example.myapp-debug-29:/layout_activity_main.xml.flat",
+        "source": "com.example.myapp-main-31:/layout/activity_main.xml"
+    }
+]

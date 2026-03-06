@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_pause">Pause</string>
+    <string name="btn_replay">Replay</string>
+    <string name="default_song_title">Song Name</string>
+    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar"/>
+</resources>
