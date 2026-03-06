@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><!-- do NOT remove, it's needed for older devices -->
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/><!-- this one does basically the same as the above but for newer devices -->
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:allowBackup="true"
         android:label="MyApp"
@@ -24,5 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayerActivity" />
+        <service
+            android:name=".MusicService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="false">
+        </service>
     </application>
 </manifest>
