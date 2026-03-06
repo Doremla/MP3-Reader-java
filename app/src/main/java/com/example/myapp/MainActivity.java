@@ -2,10 +2,13 @@ package com.example.myapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.database.Cursor; // Added this
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore; // Added this
+import android.util.Log; // For robust logging
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,22 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView listView;  //rename the object cuz i got tired of the uppercase 'L' at the beginning
-    private ArrayList<String> mp3Names = new ArrayList<>();
-    private ArrayList<String> mp3Paths = new ArrayList<>();
-    private MediaPlayer mediaPlayer;    //same as listView
+    private static final String TAG = "MP3App";
+    private ListView listView;
+    private final ArrayList<String> mp3Names = new ArrayList<>(); // Marked as final
+    private final ArrayList<String> mp3Paths = new ArrayList<>(); // Marked as final
+    private MediaPlayer mediaPlayer;
 
     private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //creating the GUI and asking for permissions
-        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
         Button btnLoad = findViewById(R.id.btnLoad);
 
         requestAudioPermission();
-        
-        btnLoad.setOnClickListener(v -> readMP3FilesFromDownload());
-        readMP3FilesFromDownload();
+
+        btnLoad.setOnClickListener(v -> readMP3FilesFromMediaStore());
+
+        // Note: This might return 0 results if permission isn't granted yet
+        readMP3FilesFromMediaStore();
+
         listView.setOnItemClickListener((parent, view, position, id) -> playMP3(mp3Paths.get(position)));
     }
 
@@ -47,13 +51,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> permissionsToRequest = new ArrayList<>();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ permission
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_AUDIO)
                     != PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(Manifest.permission.READ_MEDIA_AUDIO);
             }
         } else {
-            // Older devices
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
                 permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -69,24 +71,47 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void readMP3FilesFromDownload() {
-        File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-
-        if (downloadDir == null || !downloadDir.exists()) {
-            return;
-        }
-
-        File[] files = downloadDir.listFiles();
+    private void readMP3FilesFromMediaStore() {
         mp3Names.clear();
         mp3Paths.clear();
 
-        if (files != null) {
-            for (File f : files) {
-                if (f.isFile() && f.getName().toLowerCase().endsWith(".mp3")) {
-                    mp3Names.add(f.getName());
-                    mp3Paths.add(f.getAbsolutePath());
+        Uri collection;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            collection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
+        } else {
+            collection = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        }
+
+        String[] projection = new String[] {
+                MediaStore.Audio.Media.DISPLAY_NAME,
+                MediaStore.Audio.Media.DATA
+        };
+
+        // Using a try-with-resources for the cursor
+        try (Cursor cursor = getContentResolver().query(
+                collection,
+                projection,
+                null,
+                null,
+                null)) {
+
+            if (cursor != null) {
+                int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME);
+                int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(nameColumn);
+                    String path = cursor.getString(dataColumn);
+
+                    // Filter for MP3 files specifically if needed
+                    if (name.toLowerCase().endsWith(".mp3")) {
+                        mp3Names.add(name);
+                        mp3Paths.add(path);
+                    }
                 }
             }
+        } catch (Exception e) {
+            Log.e(TAG, "Error loading MP3s from MediaStore", e);
         }
 
         ArrayAdapter<String> adapter =
@@ -106,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error playing MP3", e);
         }
     }
 
