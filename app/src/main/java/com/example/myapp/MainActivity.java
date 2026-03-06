@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         
         btnLoad.setOnClickListener(v -> readMP3FilesFromDownload());
         readMP3FilesFromDownload();
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            playMP3(mp3Paths.get(position));
-        });
+        listView.setOnItemClickListener((parent, view, position, id) -> playMP3(mp3Paths.get(position)));
     }
 
     private void requestAudioPermission() {
