@@ -2,13 +2,14 @@ package com.example.myapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.database.Cursor; // Added this
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore; // Added this
-import android.util.Log; // For robust logging
+import android.provider.MediaStore;
+import android.util.Log;
+import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private final ArrayList<String> mp3Names = new ArrayList<>(); // Marked as final
     private final ArrayList<String> mp3Paths = new ArrayList<>(); // Marked as final
-    private MediaPlayer mediaPlayer;
+
 
     private static final int PERMISSION_REQUEST_CODE = 100;
 
@@ -44,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
         // Note: This might return 0 results if permission isn't granted yet
         readMP3FilesFromMediaStore();
 
-        listView.setOnItemClickListener((parent, view, position, id) -> playMP3(mp3Paths.get(position)));
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            // 1. Create the Intent to move to PlayerActivity
+            Intent intent = new Intent(MainActivity.this, PlayerActivity.class);
+
+            // 2. Pass the data (path and name) so the next page knows what to play
+            intent.putExtra("PATH", mp3Paths.get(position));
+            intent.putExtra("NAME", mp3Names.get(position));
+
+            // 3. Start the new screen
+            startActivity(intent);
+        });
+
     }
 
     private void requestAudioPermission() {
@@ -118,28 +130,5 @@ public class MainActivity extends AppCompatActivity {
                 new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mp3Names);
 
         listView.setAdapter(adapter);
-    }
-
-    private void playMP3(String path) {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
-
-        mediaPlayer = new MediaPlayer();
-        try {
-            mediaPlayer.setDataSource(path);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (Exception e) {
-            Log.e(TAG, "Error playing MP3", e);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
     }
 }

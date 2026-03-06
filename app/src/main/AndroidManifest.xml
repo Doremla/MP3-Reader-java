@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapp">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><!-- do NOT remove, it's needed for older devices -->
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/><!-- this one does basically the same as the above but for newer devices -->
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,11 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
+        <activity android:name=".PlayerActivity" />
     </application>
 </manifest>
