@@ -59,7 +59,6 @@ public class PlayerActivity extends AppCompatActivity {
             if (isBound) musicService.pauseResume();
         });
 
-        // Link to the Service
         Intent intent = new Intent(this, MusicService.class);
         intent.putExtra("PATH", getIntent().getStringExtra("PATH"));
         intent.putExtra("NAME", getIntent().getStringExtra("NAME"));

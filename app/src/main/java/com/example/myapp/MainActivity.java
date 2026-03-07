@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.mp3List);
         Button btnLoad = findViewById(R.id.btnLoad);
 
-        // 1. Request permissions (now includes Notifications for Android 13+)
+        // Request permissions (now includes Notifications for Android 13+)
         requestAudioPermission();
 
         btnLoad.setOnClickListener(v -> readMP3FilesFromMediaStore());

@@ -1965,6 +1965,10 @@ int color material_timepicker_button_stroke 0x7f050293
 int color material_timepicker_clock_text_color 0x7f050294
 int color material_timepicker_clockface 0x7f050295
 int color material_timepicker_modebutton_tint 0x7f050296
+int color md_theme_dark_onPrimary 0x7f0502e7
+int color md_theme_dark_primary 0x7f0502e8
+int color md_theme_light_onPrimary 0x7f0502e9
+int color md_theme_light_primary 0x7f0502ea
 int color mtrl_btn_bg_color_selector 0x7f050297
 int color mtrl_btn_ripple_color 0x7f050298
 int color mtrl_btn_stroke_color_selector 0x7f050299
@@ -4503,6 +4507,7 @@ int style Theme_MaterialComponents_Light_NoActionBar_Bridge 0x7f0f026a
 int style Theme_MaterialComponents_NoActionBar 0x7f0f026b
 int style Theme_MaterialComponents_NoActionBar_Bridge 0x7f0f026c
 int style Theme_MyApp 0x7f0f026d
+int style Theme_MyApplication 0x7f0f0453
 int style ThemeOverlay_AppCompat 0x7f0f026e
 int style ThemeOverlay_AppCompat_ActionBar 0x7f0f026f
 int style ThemeOverlay_AppCompat_Dark 0x7f0f0270
