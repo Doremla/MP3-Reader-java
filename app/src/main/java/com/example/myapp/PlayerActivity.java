@@ -25,7 +25,7 @@ public class PlayerActivity extends AppCompatActivity {
             musicService = binder.getService();
             isBound = true;
             musicService.setCallback(isPlaying -> {
-                // Update your Play/Pause button icon here
+
                 Button btnPause = findViewById(R.id.btnPause);
                 if (isPlaying) {
                     btnPause.setText("Pause"); // set icon for future updates
@@ -83,7 +83,7 @@ public class PlayerActivity extends AppCompatActivity {
         if (path != null) {
             intent.putExtra("PATH", path);
             intent.putExtra("NAME", getIntent().getStringExtra("NAME"));
-            startService(intent); // This triggers playMusic in service
+            startService(intent);
         }
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }

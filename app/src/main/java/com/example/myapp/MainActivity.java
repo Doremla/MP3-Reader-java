@@ -89,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 ? MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
                 : MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
+
         String[] projection = new String[] {
                 MediaStore.Audio.Media.DISPLAY_NAME,
                 MediaStore.Audio.Media.DATA,
-                MediaStore.Audio.Media.DURATION // Added to check song length
+                MediaStore.Audio.Media.DURATION,
+                MediaStore.Audio.Media.DATE_ADDED // Needed for sorting
         };
 
-        //  Folder must be Download
-        // Duration must be >= 50,000ms (50 seconds)
         String selection = MediaStore.Audio.Media.DATA + " LIKE ? AND " +
                 MediaStore.Audio.Media.DURATION + " >= ?";
 
@@ -105,7 +105,11 @@ public class MainActivity extends AppCompatActivity {
                 "50000"
         };
 
-        try (Cursor cursor = getContentResolver().query(collection, projection, selection, selectionArgs, null)) {
+
+        String sortOrder = MediaStore.Audio.Media.DATE_ADDED + " DESC";
+
+
+        try (Cursor cursor = getContentResolver().query(collection, projection, selection, selectionArgs, sortOrder)) {
             if (cursor != null) {
                 int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME);
                 int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "Error filtering MP3s", e);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mp3Names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item_mp3, R.id.text_mp3_name, mp3Names);
         listView.setAdapter(adapter);
     }
 }

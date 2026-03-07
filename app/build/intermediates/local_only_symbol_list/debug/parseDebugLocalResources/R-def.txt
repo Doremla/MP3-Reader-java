@@ -11,8 +11,10 @@ id btnPause
 id mp3List
 id seekBar
 id songTitle
+id text_mp3_name
 layout activity_main
 layout activity_player
+layout list_item_mp3
 string btn_pause
 string btn_replay
 string default_song_title

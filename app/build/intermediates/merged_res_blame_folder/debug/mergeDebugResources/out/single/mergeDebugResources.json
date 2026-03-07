@@ -1,14 +1,18 @@
 [
     {
+        "merged": "com.example.myapp-debug-29:/layout_list_item_mp3.xml.flat",
+        "source": "com.example.myapp-main-31:/layout/list_item_mp3.xml"
+    },
+    {
         "merged": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-debug-29:\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-main-31:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-debug-29:\\layout_activity_player.xml.flat",
-        "source": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-main-31:\\layout\\activity_player.xml"
+        "merged": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-debug-29:\\layout_list_item_mp3.xml.flat",
+        "source": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-main-31:\\layout\\list_item_mp3.xml"
     },
     {
-        "merged": "com.example.myapp-debug-29:/layout_activity_player.xml.flat",
-        "source": "com.example.myapp-main-31:/layout/activity_player.xml"
+        "merged": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-debug-29:\\layout_activity_player.xml.flat",
+        "source": "C:\\Users\\pikam\\.gradle\\daemon\\9.3.1\\com.example.myapp-main-31:\\layout\\activity_player.xml"
     }
 ]
