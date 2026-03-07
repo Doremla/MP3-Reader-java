@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.graphics.Color;
+import android.content.res.ColorStateList;
 import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Button;
@@ -24,13 +26,14 @@ public class PlayerActivity extends AppCompatActivity {
             MusicService.LocalBinder binder = (MusicService.LocalBinder) service;
             musicService = binder.getService();
             isBound = true;
+            updateRepeatButtonUI(findViewById(R.id.btnRepeat));
             musicService.setCallback(isPlaying -> {
 
                 Button btnPause = findViewById(R.id.btnPause);
                 if (isPlaying) {
-                    btnPause.setText("Pause"); // set icon for future updates
+                    btnPause.setText(getString(R.string.status_pause));
                 } else {
-                    btnPause.setText("Play");  // set icon for future updates
+                    btnPause.setText(getString(R.string.status_play));
                 }
             });
             setupSeekBar();
@@ -51,9 +54,11 @@ public class PlayerActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.songTitle);
         Button btnPause = findViewById(R.id.btnPause);
 
+        // 1. Initialize the Repeat Button
+        Button btnRepeat = findViewById(R.id.btnRepeat);
+
         title.setText(getIntent().getStringExtra("NAME"));
 
-        // Slider control
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -62,7 +67,7 @@ public class PlayerActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                handler.removeCallbacksAndMessages(null); // Pause app slider updates while dragging
+                handler.removeCallbacksAndMessages(null); // Stop auto-updates while dragging
             }
 
             @Override
@@ -70,12 +75,20 @@ public class PlayerActivity extends AppCompatActivity {
                 if (isBound) {
                     musicService.seekTo(seekBar.getProgress());
                 }
-                updateSeekBarTask(); // Resume app slider updates
+                updateSeekBarTask(); // Resume auto-updates
             }
         });
-        // Pause/Resume control
+
         btnPause.setOnClickListener(v -> {
             if (isBound) musicService.pauseResume();
+        });
+
+
+        btnRepeat.setOnClickListener(v -> {
+            if (isBound) {
+                musicService.toggleRepeat();
+                updateRepeatButtonUI(btnRepeat);
+            }
         });
 
         Intent intent = new Intent(this, MusicService.class);
@@ -88,6 +101,17 @@ public class PlayerActivity extends AppCompatActivity {
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
+    private void updateRepeatButtonUI(Button btn) {
+        if (musicService != null && musicService.isRepeatEnabled()) {
+            btn.setText(getString(R.string.repeat_on));
+            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#D0BCFF")));
+            btn.setTextColor(Color.BLACK);
+        } else {
+            btn.setText(getString(R.string.repeat_off));
+            btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4A4458")));
+            btn.setTextColor(Color.WHITE);
+        }
+    }
     private void setupSeekBar() {
         if (isBound && musicService != null) {
             seekBar.setMax(musicService.getDuration());
@@ -104,7 +128,7 @@ public class PlayerActivity extends AppCompatActivity {
             }
 
             seekBar.setProgress(musicService.getCurrentPosition());
-            handler.postDelayed(this::updateSeekBarTask, 1000);
+            handler.postDelayed(this::updateSeekBarTask, 600);
         }
     }
 

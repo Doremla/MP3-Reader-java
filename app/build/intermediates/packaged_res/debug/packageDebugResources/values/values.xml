@@ -6,9 +6,11 @@
     <color name="md_theme_light_background">#FFFBFE</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primary">#6750A4</color>
-    <string name="btn_pause">Pause</string>
-    <string name="btn_replay">Replay</string>
-    <string name="default_song_title">Song Name</string>
+    <string name="app_name">My Music App</string>
+    <string name="repeat_off">Repeat: OFF</string>
+    <string name="repeat_on">Repeat: ON</string>
+    <string name="status_pause">Pause</string>
+    <string name="status_play">Play</string>
     <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar"/>
     <style name="Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_light_primary</item>

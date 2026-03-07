@@ -8,6 +8,7 @@ color md_theme_light_onPrimary
 color md_theme_light_primary
 id btnLoad
 id btnPause
+id btnRepeat
 id mp3List
 id seekBar
 id songTitle
@@ -15,8 +16,10 @@ id text_mp3_name
 layout activity_main
 layout activity_player
 layout list_item_mp3
-string btn_pause
-string btn_replay
-string default_song_title
+string app_name
+string repeat_off
+string repeat_on
+string status_pause
+string status_play
 style Theme.MyApp
 style Theme.MyApplication
