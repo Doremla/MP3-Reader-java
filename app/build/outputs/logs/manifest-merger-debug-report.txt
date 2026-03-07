@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-35:12
-INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-35:12
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:2:1-33:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\57e16ad5465a549dfb7309eb612dabac\workspace\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\pikam\.gradle\caches\9.3.1\transforms\c2a21289519b6ebe8e05836551a4426d\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3b6c89ae0fe5adad05669d9ca57436af\workspace\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -75,8 +75,8 @@ ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidMan
 	android:name
 		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:9:22-74
 application
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-34:19
-INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-34:19
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-31:19
+INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-31:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\57e16ad5465a549dfb7309eb612dabac\workspace\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\57e16ad5465a549dfb7309eb612dabac\workspace\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\pikam\.gradle\caches\9.3.1\transforms\c2a21289519b6ebe8e05836551a4426d\workspace\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -102,35 +102,37 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\pikam\.gradle\cach
 	android:allowBackup
 		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:11:9-35
 	android:theme
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:14:9-53
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:14:9-51
 activity#com.example.myapp.MainActivity
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:16:9-27:20
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:16:9-24:20
 	android:exported
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:18:13-36
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:19:13-36
+	android:configChanges
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:17:13-43
 	android:name
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:17:13-41
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:18:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:19:13-22:29
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:17-68
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:17-68
 	android:name
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:17-76
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:22:17-76
 	android:name
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:22:27-74
 activity#com.example.myapp.PlayerActivity
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:9-52
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:25:9-52
 	android:name
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:19-49
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:25:19-49
 service#com.example.myapp.MusicService
-ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:29:9-33:19
+ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:26:9-30:19
 	android:exported
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:32:13-37
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:29:13-37
 	android:foregroundServiceType
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:31:13-58
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:13-58
 	android:name
-		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:30:13-41
+		ADDED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:27:13-41
 uses-sdk
 INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml

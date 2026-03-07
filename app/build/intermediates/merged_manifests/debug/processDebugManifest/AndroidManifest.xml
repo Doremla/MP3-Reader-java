@@ -28,15 +28,11 @@
         android:label="MyApp"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.AppCompat.Light" >
+        android:theme="@style/Theme.MyApplication" >
         <activity
             android:name="com.example.myapp.MainActivity"
+            android:configChanges="uiMode"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

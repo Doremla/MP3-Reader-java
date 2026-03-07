@@ -4,39 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="20dp">
-
-    <TextView
-        android:id="@+id/songTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Song Name"
-        android:textSize="20sp"
-        android:layout_marginBottom="30dp"/>
+    android:padding="24dp"
+    android:background="?attr/colorSurface"> <TextView
+    android:id="@+id/songTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Song Name"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:textColor="?attr/colorOnSurface"
+    android:textAlignment="center"
+    android:layout_marginBottom="40dp"/>
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
+        android:progressTint="?attr/colorPrimary"
+        android:thumbTint="?attr/colorPrimary"
+        android:layout_marginBottom="32dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        style="?android:attr/buttonBarStyle"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnReplay"
+            android:id="@+id/btnPause"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_replay"
-            style="?android:attr/buttonBarButtonStyle" /> <Button
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="Pause"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary" />
 
-        android:id="@+id/btnPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_pause"
-        style="?android:attr/buttonBarButtonStyle" /> </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

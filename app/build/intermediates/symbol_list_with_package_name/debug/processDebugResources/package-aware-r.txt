@@ -1966,8 +1966,10 @@ color material_timepicker_button_stroke
 color material_timepicker_clock_text_color
 color material_timepicker_clockface
 color material_timepicker_modebutton_tint
+color md_theme_dark_background
 color md_theme_dark_onPrimary
 color md_theme_dark_primary
+color md_theme_light_background
 color md_theme_light_onPrimary
 color md_theme_light_primary
 color mtrl_btn_bg_color_selector
@@ -3112,7 +3114,6 @@ id bounceEnd
 id bounceStart
 id btnLoad
 id btnPause
-id btnReplay
 id buttonPanel
 id cache_measures
 id callMeasure

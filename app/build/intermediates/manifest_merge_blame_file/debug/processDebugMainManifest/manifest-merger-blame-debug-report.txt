@@ -39,7 +39,7 @@
 21-->[androidx.core:core:1.10.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\4d9474d37c189d3e649eca3971307418\workspace\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
 22
 23    <application
-23-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-34:19
+23-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:10:5-31:19
 24        android:allowBackup="true"
 24-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:11:9-35
 25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -52,70 +52,62 @@
 29        android:supportsRtl="true"
 29-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:13:9-35
 30        android:testOnly="true"
-31        android:theme="@style/Theme.AppCompat.Light" >
-31-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:14:9-53
+31        android:theme="@style/Theme.MyApplication" >
+31-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:14:9-51
 32        <activity
-32-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:16:9-27:20
+32-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:16:9-24:20
 33            android:name="com.example.myapp.MainActivity"
-33-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:17:13-41
-34            android:exported="true" >
-34-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:18:13-36
-35            <intent-filter>
-35-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:19:13-22:29
-36                <action android:name="android.intent.action.MAIN" />
-36-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:17-68
-36-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:25-66
-37
-38                <category android:name="android.intent.category.LAUNCHER" />
-38-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:17-76
-38-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:27-74
-39            </intent-filter>
-40            <intent-filter>
-40-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:19:13-22:29
-41                <action android:name="android.intent.action.MAIN" />
-41-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:17-68
-41-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:25-66
-42
-43                <category android:name="android.intent.category.LAUNCHER" />
-43-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:17-76
-43-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:27-74
-44            </intent-filter>
-45        </activity>
-46        <activity android:name="com.example.myapp.PlayerActivity" />
-46-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:9-52
-46-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:19-49
-47
-48        <service
-48-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:29:9-33:19
-49            android:name="com.example.myapp.MusicService"
-49-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:30:13-41
-50            android:exported="false"
-50-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:32:13-37
-51            android:foregroundServiceType="mediaPlayback" >
-51-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:31:13-58
-52        </service>
-53
-54        <provider
-54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-55            android:name="androidx.startup.InitializationProvider"
-55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-56            android:authorities="com.example.myapp.androidx-startup"
-56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-57            android:exported="false" >
-57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-58            <meta-data
-58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-59                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-60                android:value="androidx.startup" />
-60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-61            <meta-data
-61-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-62                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-62-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-63                android:value="androidx.startup" />
-63-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-64        </provider>
-65    </application>
-66
-67</manifest>
+33-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:18:13-41
+34            android:configChanges="uiMode"
+34-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:17:13-43
+35            android:exported="true" >
+35-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:19:13-36
+36            <intent-filter>
+36-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:20:13-23:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:17-68
+37-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:21:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:22:17-76
+39-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:22:27-74
+40            </intent-filter>
+41        </activity>
+42        <activity android:name="com.example.myapp.PlayerActivity" />
+42-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:25:9-52
+42-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:25:19-49
+43
+44        <service
+44-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:26:9-30:19
+45            android:name="com.example.myapp.MusicService"
+45-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:27:13-41
+46            android:exported="false"
+46-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:29:13-37
+47            android:foregroundServiceType="mediaPlayback" >
+47-->C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\AndroidManifest.xml:28:13-58
+48        </service>
+49
+50        <provider
+50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+51            android:name="androidx.startup.InitializationProvider"
+51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+52            android:authorities="com.example.myapp.androidx-startup"
+52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+53            android:exported="false" >
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+54            <meta-data
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+55                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+56                android:value="androidx.startup" />
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\pikam\.gradle\caches\9.3.1\transforms\677c539f069275be4c77981a403f74bf\workspace\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+57            <meta-data
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+58                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+58-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+59                android:value="androidx.startup" />
+59-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\pikam\.gradle\caches\9.3.1\transforms\3dcf7902b89ccaa3706e1bd3e7664e55\workspace\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+60        </provider>
+61    </application>
+62
+63</manifest>

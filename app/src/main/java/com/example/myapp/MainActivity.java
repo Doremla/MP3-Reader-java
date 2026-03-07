@@ -91,10 +91,21 @@ public class MainActivity extends AppCompatActivity {
 
         String[] projection = new String[] {
                 MediaStore.Audio.Media.DISPLAY_NAME,
-                MediaStore.Audio.Media.DATA
+                MediaStore.Audio.Media.DATA,
+                MediaStore.Audio.Media.DURATION // Added to check song length
         };
 
-        try (Cursor cursor = getContentResolver().query(collection, projection, null, null, null)) {
+        //  Folder must be Download
+        // Duration must be >= 50,000ms (50 seconds)
+        String selection = MediaStore.Audio.Media.DATA + " LIKE ? AND " +
+                MediaStore.Audio.Media.DURATION + " >= ?";
+
+        String[] selectionArgs = new String[] {
+                "%/Download/%",
+                "50000"
+        };
+
+        try (Cursor cursor = getContentResolver().query(collection, projection, selection, selectionArgs, null)) {
             if (cursor != null) {
                 int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME);
                 int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
@@ -110,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Error loading MP3s", e);
+            Log.e(TAG, "Error filtering MP3s", e);
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mp3Names);

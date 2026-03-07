@@ -42,10 +42,8 @@ public class MusicService extends Service {
         mediaSession.setCallback(new MediaSessionCompat.Callback() {
             @Override
             public void onSeekTo(long pos) {
-                if (mediaPlayer != null) {
-                    mediaPlayer.seekTo((int) pos);
-                    updatePlaybackState(); // Update the slider position immediately
-                }
+                // This syncs the NOTIFICATION slider to the PLAYER
+                seekTo((int) pos);
             }
 
             @Override
@@ -171,7 +169,13 @@ public class MusicService extends Service {
 
     public int getCurrentPosition() { return (mediaPlayer != null) ? mediaPlayer.getCurrentPosition() : 0; }
     public int getDuration() { return (mediaPlayer != null) ? mediaPlayer.getDuration() : 0; }
-    public void seekTo(int pos) { if (mediaPlayer != null) mediaPlayer.seekTo(pos); }
+    public void seekTo(int pos) {
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(pos);
+
+            updatePlaybackState();
+        }
+    }
 
     @Override
     public IBinder onBind(Intent intent) { return binder; }
@@ -194,8 +198,9 @@ public class MusicService extends Service {
         PlaybackStateCompat playbackState = new PlaybackStateCompat.Builder()
                 .setActions(PlaybackStateCompat.ACTION_PLAY |
                         PlaybackStateCompat.ACTION_PAUSE |
-                        PlaybackStateCompat.ACTION_SEEK_TO) // This enables the slider
-                .setState(state, position, speed)
+                        PlaybackStateCompat.ACTION_SEEK_TO |
+                        PlaybackStateCompat.ACTION_PLAY_PAUSE)
+                .setState(state, position, speed) // 'position' tells the notification where to move
                 .build();
 
         mediaSession.setPlaybackState(playbackState);

@@ -1965,8 +1965,10 @@ int color material_timepicker_button_stroke 0x7f050293
 int color material_timepicker_clock_text_color 0x7f050294
 int color material_timepicker_clockface 0x7f050295
 int color material_timepicker_modebutton_tint 0x7f050296
+int color md_theme_dark_background 0x7f0502eb
 int color md_theme_dark_onPrimary 0x7f0502e7
 int color md_theme_dark_primary 0x7f0502e8
+int color md_theme_light_background 0x7f0502ec
 int color md_theme_light_onPrimary 0x7f0502e9
 int color md_theme_light_primary 0x7f0502ea
 int color mtrl_btn_bg_color_selector 0x7f050297
@@ -3111,7 +3113,6 @@ int id bounceEnd 0x7f080061
 int id bounceStart 0x7f080062
 int id btnLoad 0x7f080063
 int id btnPause 0x7f080064
-int id btnReplay 0x7f080065
 int id buttonPanel 0x7f080066
 int id cache_measures 0x7f080067
 int id callMeasure 0x7f080068

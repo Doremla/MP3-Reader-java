@@ -24,6 +24,15 @@ public class PlayerActivity extends AppCompatActivity {
             MusicService.LocalBinder binder = (MusicService.LocalBinder) service;
             musicService = binder.getService();
             isBound = true;
+            musicService.setCallback(isPlaying -> {
+                // Update your Play/Pause button icon here
+                Button btnPause = findViewById(R.id.btnPause);
+                if (isPlaying) {
+                    btnPause.setText("Pause"); // set icon for future updates
+                } else {
+                    btnPause.setText("Play");  // set icon for future updates
+                }
+            });
             setupSeekBar();
         }
 
@@ -48,22 +57,34 @@ public class PlayerActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser && isBound) musicService.seekTo(progress);
-            }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
 
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                handler.removeCallbacksAndMessages(null); // Pause app slider updates while dragging
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if (isBound) {
+                    musicService.seekTo(seekBar.getProgress());
+                }
+                updateSeekBarTask(); // Resume app slider updates
+            }
+        });
         // Pause/Resume control
         btnPause.setOnClickListener(v -> {
             if (isBound) musicService.pauseResume();
         });
 
         Intent intent = new Intent(this, MusicService.class);
-        intent.putExtra("PATH", getIntent().getStringExtra("PATH"));
-        intent.putExtra("NAME", getIntent().getStringExtra("NAME"));
-
-        startService(intent);
+        String path = getIntent().getStringExtra("PATH");
+        if (path != null) {
+            intent.putExtra("PATH", path);
+            intent.putExtra("NAME", getIntent().getStringExtra("NAME"));
+            startService(intent); // This triggers playMusic in service
+        }
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
 
@@ -76,6 +97,12 @@ public class PlayerActivity extends AppCompatActivity {
 
     private void updateSeekBarTask() {
         if (isBound && musicService != null) {
+
+            int duration = musicService.getDuration();
+            if (seekBar.getMax() != duration && duration > 0) {
+                seekBar.setMax(duration);
+            }
+
             seekBar.setProgress(musicService.getCurrentPosition());
             handler.postDelayed(this::updateSeekBarTask, 1000);
         }
