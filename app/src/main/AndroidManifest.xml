@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".PlayerActivity" />
+        <activity android:name=".PlayerActivity"
+        android:launchMode="singleTop" />
         <service
             android:name=".MusicService"
             android:foregroundServiceType="mediaPlayback"

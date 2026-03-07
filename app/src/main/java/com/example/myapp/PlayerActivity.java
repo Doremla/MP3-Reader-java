@@ -117,4 +117,16 @@ public class PlayerActivity extends AppCompatActivity {
         }
         handler.removeCallbacksAndMessages(null);
     }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+
+        String name = intent.getStringExtra("NAME");
+        if (name != null) {
+            TextView title = findViewById(R.id.songTitle);
+            title.setText(name);
+        }
+    }
 }
