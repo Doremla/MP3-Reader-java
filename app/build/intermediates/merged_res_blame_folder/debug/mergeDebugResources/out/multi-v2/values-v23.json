@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.myapp-mergeDebugResources-34:/values-v23/values-v23.xml",
+            "outputFile": "com.example.MP3_player.app-mergeDebugResources-34:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\pikam\\.gradle\\caches\\9.3.1\\transforms\\9f0e419021792b7231c11968ad6101ab\\workspace\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",

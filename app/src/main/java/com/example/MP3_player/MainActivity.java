@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.MP3_player;
 
 import android.Manifest;
 import android.content.Intent;
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MP3App";
     private ListView listView;
+    private ArrayAdapter<String> adapter;
     private final ArrayList<String> mp3Names = new ArrayList<>();
     private final ArrayList<String> mp3Paths = new ArrayList<>();
     private static final int PERMISSION_REQUEST_CODE = 100;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
 
         listView = findViewById(R.id.mp3List);
         Button btnLoad = findViewById(R.id.btnLoad);
@@ -38,16 +41,34 @@ public class MainActivity extends AppCompatActivity {
         // Request permissions (now includes Notifications for Android 13+)
         requestAudioPermission();
 
-        btnLoad.setOnClickListener(v -> readMP3FilesFromMediaStore());
-
-        // Initial attempt to load files
-        readMP3FilesFromMediaStore();
+        btnLoad.setOnClickListener(v -> {
+            readMP3FilesFromMediaStore();
+            if (adapter != null) {
+                adapter.getFilter().filter(""); // Clears the search filter when reloading
+            }
+        });
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(MainActivity.this, PlayerActivity.class);
-            intent.putExtra("PATH", mp3Paths.get(position));
-            intent.putExtra("NAME", mp3Names.get(position));
-            startActivity(intent);
+            String selectedSongName = (String) parent.getItemAtPosition(position);
+
+            int originalIndex = mp3Names.indexOf(selectedSongName);
+
+            if (originalIndex != -1) {
+                Intent serviceIntent = new Intent(MainActivity.this, MusicService.class);
+                serviceIntent.putExtra("PATH", mp3Paths.get(originalIndex));
+                serviceIntent.putExtra("NAME", mp3Names.get(originalIndex));
+
+                // Start service BEFORE moving to the next activity
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(serviceIntent);
+                } else {
+                    startService(serviceIntent);
+                }
+
+                Intent activityIntent = new Intent(MainActivity.this, PlayerActivity.class);
+                activityIntent.putExtra("NAME", mp3Names.get(originalIndex));
+                startActivity(activityIntent);
+            }
         });
     }
 
@@ -79,6 +100,33 @@ public class MainActivity extends AppCompatActivity {
                     PERMISSION_REQUEST_CODE
             );
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        android.view.MenuItem searchItem = menu.findItem(R.id.action_search);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+
+        assert searchView != null;
+        searchView.setQueryHint("Search songs...");
+
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (adapter != null) {
+                    adapter.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void readMP3FilesFromMediaStore() {
@@ -128,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG, "Error filtering MP3s", e);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item_mp3, R.id.text_mp3_name, mp3Names);
+        adapter = new ArrayAdapter<>(this, R.layout.list_item_mp3, R.id.text_mp3_name, mp3Names);
         listView.setAdapter(adapter);
     }
 }

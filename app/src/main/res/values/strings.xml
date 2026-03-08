@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Music App</string>
+    <string name="app_name">MP3 Player</string>
+    <string name="status_pause">Pause</string>
+    <string name="status_play">Play</string>
     <string name="repeat_on">Repeat: ON</string>
     <string name="repeat_off">Repeat: OFF</string>
-    <string name="status_play">Play</string>
-    <string name="status_pause">Pause</string>
 </resources>

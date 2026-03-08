@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.MP3_player;
 
 import android.content.ComponentName;
 import android.content.Context;

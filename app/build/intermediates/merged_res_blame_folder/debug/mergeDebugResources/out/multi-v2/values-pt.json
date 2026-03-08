@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.myapp-mergeDebugResources-34:/values-pt/values-pt.xml",
+            "outputFile": "com.example.MP3_player.app-mergeDebugResources-34:/values-pt/values-pt.xml",
             "map": [
                 {
                     "source": "C:\\Users\\pikam\\.gradle\\caches\\9.3.1\\transforms\\0b474fb07a1b3f86cd5ebca25593bb4b\\workspace\\transformed\\appcompat-1.7.1\\res\\values-pt\\values-pt.xml",

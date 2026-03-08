@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.example.MP3_player;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -44,13 +44,18 @@ public class MusicService extends Service {
 
         mediaSession.setCallback(new MediaSessionCompat.Callback() {
             @Override
-            public void onSeekTo(long pos) { seekTo((int) pos); }
+            public void onSeekTo(long pos) {
+                seekTo((int) pos);
+            }
             @Override
-            public void onPause() { pauseResume(); }
+            public void onPause() {
+                pauseResume();
+            }
             @Override
-            public void onPlay() { pauseResume(); }
+            public void onPlay() {
+                pauseResume();
+            }
         });
-
         mediaSession.setActive(true);
     }
 
@@ -58,18 +63,28 @@ public class MusicService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             String action = intent.getAction();
-
             if ("ACTION_PAUSE_RESUME".equals(action)) {
                 pauseResume();
                 return START_NOT_STICKY;
             }
 
             String name = intent.getStringExtra("NAME");
-            if (name != null) {
-                this.currentSongName = name;
+            String path = intent.getStringExtra("PATH");
+
+            if (name != null) this.currentSongName = name;
+
+            Notification initialNotification = buildNotification(this.currentSongName);
+
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                    startForeground(1, initialNotification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+                } else {
+                    startForeground(1, initialNotification);
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Failed to start foreground service", e);
             }
 
-            String path = intent.getStringExtra("PATH");
             if (path != null) {
                 playMusic(path);
             }
@@ -78,7 +93,6 @@ public class MusicService extends Service {
     }
 
     private Notification buildNotification(String name) {
-        // This is the Intent that opens the PlayerActivity
         Intent intent = new Intent(this, PlayerActivity.class);
         intent.putExtra("NAME", name);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent,
@@ -122,39 +136,29 @@ public class MusicService extends Service {
     }
 
     private void playMusic(String path) {
-        if (mediaPlayer != null) mediaPlayer.release();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(path);
-            mediaPlayer.setOnCompletionListener(mp -> {
-                if (isRepeatEnabled) {
-                    mp.seekTo(0);
-                    mp.start();
-                } else if (callback != null) {
-                    callback.onPlayerStatusChanged(false);
-                }
-                updatePlaybackState();
-                updateNotification(currentSongName);
-            });
 
             mediaPlayer.setOnPreparedListener(mp -> {
                 mp.start();
-                MediaMetadataCompat metadata = new MediaMetadataCompat.Builder()
+                mediaSession.setMetadata(new MediaMetadataCompat.Builder()
                         .putString(MediaMetadataCompat.METADATA_KEY_TITLE, currentSongName)
+                        .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "My App")
                         .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, mp.getDuration())
-                        .build();
-                mediaSession.setMetadata(metadata);
-                updatePlaybackState();
+                        .build());
 
-                Notification notification = buildNotification(currentSongName);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                    startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-                } else {
-                    startForeground(1, notification);
-                }
+                updatePlaybackState();
+                updateNotification(currentSongName);
                 if (callback != null) callback.onPlayerStatusChanged(true);
             });
+
             mediaPlayer.prepareAsync();
+
         } catch (Exception e) {
             Log.e(TAG, "Error playing file", e);
         }

@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapp">
+    package="com.example.MP3_player">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><!-- do NOT remove, it's needed for older devices -->
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/><!-- this one does basically the same as the above but for newer devices -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
-        android:label="MyApp"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:theme="@style/Theme.MyApplication"
+        android:appCategory="audio">
 
         <activity
             android:configChanges="uiMode"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_MUSIC" />
+                <action android:name="android.intent.action.MUSIC_PLAYER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayerActivity"
-        android:launchMode="singleTop" />
+
+        <activity
+            android:name="com.example.MP3_player.PlayerActivity"
+            android:launchMode="singleTop" />
+
         <service
             android:name=".MusicService"
             android:foregroundServiceType="mediaPlayback"
-            android:exported="false">
+            android:exported="true"> <intent-filter>
+            <action android:name="android.media.browse.MediaBrowserService" />
+        </intent-filter>
         </service>
     </application>
 

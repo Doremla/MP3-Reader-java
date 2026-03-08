@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.myapp-mergeDebugResources-34:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.example.MP3_player.app-mergeDebugResources-34:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\pikam\\.gradle\\caches\\9.3.1\\transforms\\7360c103fef341adc7cac7e8e0112c5d\\workspace\\transformed\\material-1.13.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
