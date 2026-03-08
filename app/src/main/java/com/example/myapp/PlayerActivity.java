@@ -51,38 +51,30 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         seekBar = findViewById(R.id.seekBar);
-        TextView title = findViewById(R.id.songTitle);
         Button btnPause = findViewById(R.id.btnPause);
-
-        // 1. Initialize the Repeat Button
         Button btnRepeat = findViewById(R.id.btnRepeat);
 
-        title.setText(getIntent().getStringExtra("NAME"));
+        handleIntentData(getIntent());
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                handler.removeCallbacksAndMessages(null); // Stop auto-updates while dragging
+                handler.removeCallbacksAndMessages(null);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (isBound) {
-                    musicService.seekTo(seekBar.getProgress());
-                }
-                updateSeekBarTask(); // Resume auto-updates
+                if (isBound) musicService.seekTo(seekBar.getProgress());
+                updateSeekBarTask();
             }
         });
 
         btnPause.setOnClickListener(v -> {
             if (isBound) musicService.pauseResume();
         });
-
 
         btnRepeat.setOnClickListener(v -> {
             if (isBound) {
@@ -100,6 +92,17 @@ public class PlayerActivity extends AppCompatActivity {
         }
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
+    private void handleIntentData(Intent intent) {
+        if (intent != null && intent.hasExtra("NAME")) {
+            String name = intent.getStringExtra("NAME");
+            TextView title = findViewById(R.id.songTitle);
+            if (title != null && name != null) {
+                title.setText(name);
+            }
+        }
+    }
+
+
 
     private void updateRepeatButtonUI(Button btn) {
         if (musicService != null && musicService.isRepeatEnabled()) {
@@ -145,12 +148,6 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-
-
-        String name = intent.getStringExtra("NAME");
-        if (name != null) {
-            TextView title = findViewById(R.id.songTitle);
-            title.setText(name);
-        }
+        handleIntentData(intent);
     }
 }
