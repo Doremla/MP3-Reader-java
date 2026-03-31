@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.MP3_player.app-mergeDebugResources-34:/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "com.example.mp3player.app-mergeDebugResources-30:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pikam\\.gradle\\caches\\9.3.1\\transforms\\0b474fb07a1b3f86cd5ebca25593bb4b\\workspace\\transformed\\appcompat-1.7.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\8.12\\transforms\\aaabc97cb1162404766a0d867bfc5923\\transformed\\appcompat-1.6.1\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

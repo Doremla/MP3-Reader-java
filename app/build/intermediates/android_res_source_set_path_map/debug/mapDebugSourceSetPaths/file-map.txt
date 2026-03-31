@@ -1,8 +1,8 @@
-com.example.MP3_player.app-pngs-0 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\generated\res\pngs\debug
-com.example.MP3_player.app-resValues-1 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\generated\res\resValues\debug
-com.example.MP3_player.app-updated_navigation_xml-2 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\generated\updated_navigation_xml\debug
-com.example.MP3_player.app-packageDebugResources-3 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.MP3_player.app-packageDebugResources-4 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.MP3_player.app-debug-5 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.MP3_player.app-debug-6 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\debug\res
-com.example.MP3_player.app-main-7 C:\Users\pikam\StudioProjects\MP3-Reader-java\app\src\main\res
+com.example.MP3_player.app-pngs-0 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\generated\res\pngs\debug
+com.example.MP3_player.app-resValues-1 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\generated\res\resValues\debug
+com.example.MP3_player.app-updated_navigation_xml-2 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\generated\updated_navigation_xml\debug
+com.example.MP3_player.app-packageDebugResources-3 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.MP3_player.app-packageDebugResources-4 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.MP3_player.app-debug-5 C:\Users\user\StudioProjects\MP3-Reader-java\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.MP3_player.app-debug-6 C:\Users\user\StudioProjects\MP3-Reader-java\app\src\debug\res
+com.example.MP3_player.app-main-7 C:\Users\user\StudioProjects\MP3-Reader-java\app\src\main\res

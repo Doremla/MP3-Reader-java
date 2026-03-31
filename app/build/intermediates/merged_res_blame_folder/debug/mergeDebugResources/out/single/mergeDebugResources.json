@@ -1,90 +1,94 @@
 [
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/layout_activity_main.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/layout/activity_main.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/layout_list_item_mp3.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/layout/list_item_mp3.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-hdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/menu_main_menu.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/menu/main_menu.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\layout_activity_player.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\layout\\activity_player.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-mdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\menu\\main_menu.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/layout_activity_player.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/layout/activity_player.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-hdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.mp3player.app-debug-32:/layout_list_item_mp3.xml.flat",
+        "source": "com.example.mp3player.app-main-34:/layout/list_item_mp3.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\layout_list_item_mp3.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\layout\\list_item_mp3.xml"
     },
     {
-        "merged": "com.example.MP3_player.app-debug-36:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.MP3_player.app-main-38:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-debug-32:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.12\\com.example.mp3player.app-main-34:\\mipmap-mdpi\\ic_launcher_foreground.webp"
     }
 ]

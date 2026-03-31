@@ -1,11 +1,5 @@
 R_DEF: Internal format may change without notice
 local
-color md_theme_dark_background
-color md_theme_dark_onPrimary
-color md_theme_dark_primary
-color md_theme_light_background
-color md_theme_light_onPrimary
-color md_theme_light_primary
 drawable ic_launcher_background
 id action_search
 id btnLoad
@@ -29,4 +23,3 @@ string repeat_on
 string status_pause
 string status_play
 style Theme.MyApp
-style Theme.MyApplication

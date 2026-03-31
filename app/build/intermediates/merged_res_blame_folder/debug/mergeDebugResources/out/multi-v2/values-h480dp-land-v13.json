@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.MP3_player.app-mergeDebugResources-34:/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+            "outputFile": "com.example.mp3player.app-mergeDebugResources-30:/values-h480dp-land-v13/values-h480dp-land-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pikam\\.gradle\\caches\\9.3.1\\transforms\\7360c103fef341adc7cac7e8e0112c5d\\workspace\\transformed\\material-1.13.0\\res\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\8.12\\transforms\\31b70856bf4c792b95a19f6234bf8566\\transformed\\material-1.11.0\\res\\values-h480dp-land-v13\\values-h480dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
