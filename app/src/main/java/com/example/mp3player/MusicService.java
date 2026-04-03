@@ -4,23 +4,25 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ServiceInfo;
 import android.media.MediaPlayer;
 import android.os.Binder;
-import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.media.app.NotificationCompat.MediaStyle;
 
+import java.util.ArrayList;
+
+//this code is the prt that keeps the music player as a service, without this the music player
+//will nor be able to replay music also as notification player but also just in background properly
 public class MusicService extends Service {
     private MediaPlayer mediaPlayer;
+    private boolean isChangingTrack = false;
     private static final String CHANNEL_ID = "MusicChannel";
     private static final String TAG = "MusicService";
     private MediaSessionCompat mediaSession;
@@ -28,6 +30,9 @@ public class MusicService extends Service {
     private String currentSongName = "Unknown";
     private boolean isRepeatEnabled = false;
     private final IBinder binder = new LocalBinder();
+    private ArrayList<String> songPaths = new ArrayList<>();
+    private ArrayList<String> songNames = new ArrayList<>();
+    private int currentIndex = 0;
 
     public class LocalBinder extends Binder {
         MusicService getService() { return MusicService.this; }
@@ -36,10 +41,10 @@ public class MusicService extends Service {
     public void toggleRepeat() {
         isRepeatEnabled = !isRepeatEnabled;
         if (mediaPlayer != null) {
-            // This tells the hardware/engine to actually loop the file!
             mediaPlayer.setLooping(isRepeatEnabled);
         }
     }
+
     public boolean isRepeatEnabled() { return isRepeatEnabled; }
 
     @Override
@@ -74,23 +79,113 @@ public class MusicService extends Service {
                 return START_NOT_STICKY;
             }
 
-            this.currentSongName = intent.getStringExtra("NAME") != null ? intent.getStringExtra("NAME") : "Unknown";
-            String path = intent.getStringExtra("PATH");
+            ArrayList<String> paths = intent.getStringArrayListExtra("Paths");
+            ArrayList<String> names = intent.getStringArrayListExtra("Names");
+            int index = intent.getIntExtra("INDEX", -1);
+            if (paths != null && names != null && index != -1) {
+                String requestedPath = paths.get(index);
+                String currentPath = (songPaths.size() > currentIndex) ? songPaths.get(currentIndex) : "";
 
-            Notification notification = buildNotification(this.currentSongName);
-
-            // Required for Android 14 (API 34) and 15+ (API 35/36)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startForeground(1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-            } else {
-                startForeground(1, notification);
-            }
-
-            if (path != null) {
-                playMusic(path);
+                if (!requestedPath.equals(currentPath) || mediaPlayer == null) {
+                    this.songPaths = paths;
+                    this.songNames = names;
+                    this.currentIndex = index;
+                    this.currentSongName = songNames.get(currentIndex);
+                    playMusic(requestedPath);
+                }
             }
         }
-        return START_STICKY; // Use START_STICKY to keep service alive
+        return START_STICKY;
+    }
+
+    private void playMusic(String path) {
+        isChangingTrack = true;
+
+        if (mediaPlayer != null) {
+            mediaPlayer.setOnCompletionListener(null);
+            mediaPlayer.setOnPreparedListener(null);
+            mediaPlayer.setOnErrorListener(null);
+            try {
+                if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+            } catch (Exception ignored) {}
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(path);
+            mediaPlayer.setOnCompletionListener(mp -> {
+                if (!isRepeatEnabled && !isChangingTrack) {
+                    playNext();
+                } else if (isRepeatEnabled) {
+                    mp.start();
+                }
+            });
+
+            mediaPlayer.setOnPreparedListener(mp -> {
+                isChangingTrack = false;
+                mp.setLooping(isRepeatEnabled);
+                mp.start();
+                updatePlaybackState();
+                updateNotification(currentSongName);
+                if (callback != null) callback.onPlayerStatusChanged(true);
+            });
+
+            mediaPlayer.setOnErrorListener((mp, what, extra) -> {
+                isChangingTrack = false;
+                return false;
+            });
+
+            mediaPlayer.prepareAsync();
+        } catch (Exception e) {
+            isChangingTrack = false;
+            Log.e(TAG, "Source error", e);
+        }
+    }
+
+    public void playNext() {
+        if (songPaths == null || songPaths.isEmpty()) return;
+        currentIndex = (currentIndex + 1) % songPaths.size();
+        currentSongName = songNames.get(currentIndex);
+
+        if (callback != null) callback.onTrackChanged(currentSongName);
+        playMusic(songPaths.get(currentIndex));
+    }
+
+    public void pauseResume() {
+        if (mediaPlayer == null) return;
+        if (mediaPlayer.isPlaying()) mediaPlayer.pause();
+        else mediaPlayer.start();
+
+        if (callback != null) callback.onPlayerStatusChanged(mediaPlayer.isPlaying());
+        updatePlaybackState();
+        updateNotification(currentSongName);
+    }
+
+
+    public int getCurrentPosition() { return (mediaPlayer != null) ? mediaPlayer.getCurrentPosition() : 0; }
+    public int getDuration() { return (mediaPlayer != null) ? mediaPlayer.getDuration() : 0; }
+
+    public void seekTo(int pos) {
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(pos);
+            updatePlaybackState();
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) { return binder; }
+
+    private void createNotificationChannel() {
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Music", NotificationManager.IMPORTANCE_LOW);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (manager != null) manager.createNotificationChannel(channel);
+    }
+
+    private void updateNotification(String name) {
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (manager != null) manager.notify(1, buildNotification(name));
     }
 
     private Notification buildNotification(String name) {
@@ -121,70 +216,6 @@ public class MusicService extends Service {
                 .build();
     }
 
-    public void pauseResume() {
-        if (mediaPlayer == null) return;
-        if (mediaPlayer.isPlaying()) mediaPlayer.pause();
-        else mediaPlayer.start();
-
-        if (callback != null) callback.onPlayerStatusChanged(mediaPlayer.isPlaying());
-        updatePlaybackState();
-        updateNotification(currentSongName);
-    }
-
-    private void updateNotification(String name) {
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (manager != null) manager.notify(1, buildNotification(name));
-    }
-
-    private void playMusic(String path) {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-        }
-        mediaPlayer = new MediaPlayer();
-        try {
-            mediaPlayer.setDataSource(path);
-
-            mediaPlayer.setOnPreparedListener(mp -> {
-                mp.start();
-                mediaSession.setMetadata(new MediaMetadataCompat.Builder()
-                        .putString(MediaMetadataCompat.METADATA_KEY_TITLE, currentSongName)
-                        .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, "My App")
-                        .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, mp.getDuration())
-                        .build());
-
-                updatePlaybackState();
-                updateNotification(currentSongName);
-                if (callback != null) callback.onPlayerStatusChanged(true);
-            });
-
-            mediaPlayer.prepareAsync();
-
-        } catch (Exception e) {
-            Log.e(TAG, "Error playing file", e);
-        }
-    }
-
-    public int getCurrentPosition() { return (mediaPlayer != null) ? mediaPlayer.getCurrentPosition() : 0; }
-    public int getDuration() { return (mediaPlayer != null) ? mediaPlayer.getDuration() : 0; }
-    public void seekTo(int pos) {
-        if (mediaPlayer != null) {
-            mediaPlayer.seekTo(pos);
-            updatePlaybackState();
-        }
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) { return binder; }
-
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Music", NotificationManager.IMPORTANCE_LOW);
-            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if (manager != null) manager.createNotificationChannel(channel);
-        }
-    }
-
     private void updatePlaybackState() {
         if (mediaSession == null || mediaPlayer == null) return;
         int state = mediaPlayer.isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED;
@@ -201,7 +232,11 @@ public class MusicService extends Service {
         super.onDestroy();
     }
 
-    public interface MusicCallback { void onPlayerStatusChanged(boolean isPlaying); }
+    public interface MusicCallback {
+        void onPlayerStatusChanged(boolean isPlaying);
+        void onTrackChanged(String newName);
+    }
+
     private MusicCallback callback;
     public void setCallback(MusicCallback callback) { this.callback = callback; }
 }

@@ -13,11 +13,16 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
+//this code is the part that shows when clicked on a file
+//after clicking it the page will appear, that is what this code do
+//shows a mp3player with basic buttons, like repeat or pause
+//same as MainActivity, all the override methods are from android, so NO renameing cuz code will break
 public class PlayerActivity extends AppCompatActivity {
     private MusicService musicService;
-    private boolean isBound = false;
+    private boolean boundStatus = false;
     private SeekBar seekBar;
+    private Button btnPause;
+    private Button btnRepeat;
     private final Handler handler = new Handler();
 
     private final ServiceConnection connection = new ServiceConnection() {
@@ -25,23 +30,33 @@ public class PlayerActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             MusicService.LocalBinder binder = (MusicService.LocalBinder) service;
             musicService = binder.getService();
-            isBound = true;
-            updateRepeatButtonUI(findViewById(R.id.btnRepeat));
-            musicService.setCallback(isPlaying -> {
+            boundStatus = true;
 
-                Button btnPause = findViewById(R.id.btnPause);
-                if (isPlaying) {
-                    btnPause.setText(getString(R.string.status_pause));
-                } else {
-                    btnPause.setText(getString(R.string.status_play));
+            updateRepeatButtonUI(btnRepeat);
+            setupSeekBar();
+
+            musicService.setCallback(new MusicService.MusicCallback() {
+                @Override
+                public void onPlayerStatusChanged(boolean isPlaying) {
+                    runOnUiThread(() -> btnPause.setText(isPlaying ? getString(R.string.status_pause) : getString(R.string.status_play)));
+                }
+
+                @Override
+                public void onTrackChanged(String newName) {
+                    runOnUiThread(() -> {
+                        TextView title = findViewById(R.id.songTitle);
+                        if (title != null) title.setText(newName);
+                        if (musicService != null) {
+                            seekBar.setMax(musicService.getDuration());
+                        }
+                    });
                 }
             });
-            setupSeekBar();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            isBound = false;
+            boundStatus = false;
         }
     };
 
@@ -51,8 +66,8 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         seekBar = findViewById(R.id.seekBar);
-        Button btnPause = findViewById(R.id.btnPause);
-        Button btnRepeat = findViewById(R.id.btnRepeat);
+        btnPause = findViewById(R.id.btnPause);
+        btnRepeat = findViewById(R.id.btnRepeat);
 
         handleIntentData(getIntent());
 
@@ -67,31 +82,26 @@ public class PlayerActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (isBound) musicService.seekTo(seekBar.getProgress());
+                if (boundStatus) musicService.seekTo(seekBar.getProgress());
                 updateSeekBarTask();
             }
         });
 
         btnPause.setOnClickListener(v -> {
-            if (isBound) musicService.pauseResume();
+            if (boundStatus) musicService.pauseResume();
         });
 
         btnRepeat.setOnClickListener(v -> {
-            if (isBound) {
+            if (boundStatus) {
                 musicService.toggleRepeat();
                 updateRepeatButtonUI(btnRepeat);
             }
         });
 
         Intent intent = new Intent(this, MusicService.class);
-        String path = getIntent().getStringExtra("PATH");
-        if (path != null) {
-            intent.putExtra("PATH", path);
-            intent.putExtra("NAME", getIntent().getStringExtra("NAME"));
-            startService(intent);
-        }
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
+
     private void handleIntentData(Intent intent) {
         if (intent != null && intent.hasExtra("NAME")) {
             String name = intent.getStringExtra("NAME");
@@ -101,8 +111,6 @@ public class PlayerActivity extends AppCompatActivity {
             }
         }
     }
-
-
 
     private void updateRepeatButtonUI(Button btn) {
         if (musicService != null && musicService.isRepeatEnabled()) {
@@ -115,21 +123,20 @@ public class PlayerActivity extends AppCompatActivity {
             btn.setTextColor(Color.WHITE);
         }
     }
+
     private void setupSeekBar() {
-        if (isBound && musicService != null) {
+        if (boundStatus && musicService != null) {
             seekBar.setMax(musicService.getDuration());
             updateSeekBarTask();
         }
     }
 
     private void updateSeekBarTask() {
-        if (isBound && musicService != null) {
-
+        if (boundStatus && musicService != null) {
             int duration = musicService.getDuration();
             if (seekBar.getMax() != duration && duration > 0) {
                 seekBar.setMax(duration);
             }
-
             seekBar.setProgress(musicService.getCurrentPosition());
             handler.postDelayed(this::updateSeekBarTask, 600);
         }
@@ -138,12 +145,13 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (isBound) {
+        if (boundStatus) {
             unbindService(connection);
-            isBound = false;
+            boundStatus = false;
         }
         handler.removeCallbacksAndMessages(null);
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
