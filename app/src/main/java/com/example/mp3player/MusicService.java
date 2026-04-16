@@ -99,47 +99,31 @@ public class MusicService extends Service {
     }
 
     private void playMusic(String path) {
-        isChangingTrack = true;
-
         if (mediaPlayer != null) {
-            mediaPlayer.setOnCompletionListener(null);
-            mediaPlayer.setOnPreparedListener(null);
-            mediaPlayer.setOnErrorListener(null);
-            try {
-                if (mediaPlayer.isPlaying()) mediaPlayer.stop();
-            } catch (Exception ignored) {}
-            mediaPlayer.release();
-            mediaPlayer = null;
+            mediaPlayer.reset(); // Put the player back to Idle state
+        } else {
+            mediaPlayer = new MediaPlayer();
         }
 
-        mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource(path);
             mediaPlayer.setOnCompletionListener(mp -> {
-                if (!isRepeatEnabled && !isChangingTrack) {
-                    playNext();
-                } else if (isRepeatEnabled) {
+                if (isRepeatEnabled) {
                     mp.start();
+                } else {
+                    playNext();
                 }
             });
 
             mediaPlayer.setOnPreparedListener(mp -> {
-                isChangingTrack = false;
-                mp.setLooping(isRepeatEnabled);
                 mp.start();
                 updatePlaybackState();
                 updateNotification(currentSongName);
                 if (callback != null) callback.onPlayerStatusChanged(true);
             });
 
-            mediaPlayer.setOnErrorListener((mp, what, extra) -> {
-                isChangingTrack = false;
-                return false;
-            });
-
             mediaPlayer.prepareAsync();
         } catch (Exception e) {
-            isChangingTrack = false;
             Log.e(TAG, "Source error", e);
         }
     }

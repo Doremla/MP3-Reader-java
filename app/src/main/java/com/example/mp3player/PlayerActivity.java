@@ -133,11 +133,17 @@ public class PlayerActivity extends AppCompatActivity {
 
     private void updateSeekBarTask() {
         if (boundStatus && musicService != null) {
-            int duration = musicService.getDuration();
-            if (seekBar.getMax() != duration && duration > 0) {
-                seekBar.setMax(duration);
+            try {
+                // Only ask for duration if the player is actually initialized
+                int duration = musicService.getDuration();
+                int current = musicService.getCurrentPosition();
+
+                if (duration > 0) {
+                    seekBar.setMax(duration);
+                    seekBar.setProgress(current);
+                }
+            } catch (IllegalStateException e) {
             }
-            seekBar.setProgress(musicService.getCurrentPosition());
             handler.postDelayed(this::updateSeekBarTask, 600);
         }
     }
